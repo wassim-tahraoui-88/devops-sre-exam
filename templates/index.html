@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Sales</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; text-align: center; padding: 40px; }
+        h1 { color: #343a40; }
+        form, .buttons { margin: 20px auto; width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        label, select, input { width: 100%; margin-bottom: 10px; padding: 8px; }
+        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        a button { background-color: #28a745; }
+        a button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+<h1>Select a Product</h1>
+<form action="/calculate" method="post">
+    <label for="product">Product:</label>
+    <select name="product">
+        {% for code, info in products.items() %}
+        <option value="{{ code }}">{{ info.description }} - ${{ info.price }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" min="1" required>
+    <button type="submit">Calculate Total</button>
+</form>
+<div class="buttons">
+    <a href="/sales"><button>View Sales History</button></a>
+</div>
+</body>
+</html>
